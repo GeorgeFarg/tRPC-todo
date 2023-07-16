@@ -1,0 +1,18 @@
+FROM node:18
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install
+
+RUN npm install -g typescript
+RUN npm install --save-dev @types/express @types/cors
+
+COPY . .
+
+RUN npx prisma generate
+
+RUN tsc
+
+CMD [ "node", "dist/server.js" ]

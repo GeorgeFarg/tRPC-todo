@@ -1,0 +1,29 @@
+FROM nginx:stable
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+# Install Node.js and npm in the container
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
+
+RUN npm run
+
+RUN npm install typescript @trpc/client @tanstack/react-query
+
+COPY . .
+
+# Build the Vite-based React app in production mode
+RUN npm run build
+
+# Remove Node.js and npm from the container
+RUN apt-get remove -y nodejs npm curl
+RUN apt-get autoremove -y
+
+# Copy the built React app to the Nginx document root
+RUN cp -r dist/* /usr/share/nginx/html
+
+# Copy the Nginx configuration file to the container
+COPY nginx.conf /etc/nginx/conf.d/default.conf

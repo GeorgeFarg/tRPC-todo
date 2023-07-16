@@ -2,11 +2,12 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "set DATABASE_HOST=localhost&& nodemon server.ts",
     "migrate:local": "set DATABASE_HOST=localhost&& npx prisma migrate dev --name init",
-    "studio:local": "set DATABASE_HOST=localhost&& npx prisma studio"
+    "studio:local": "set DATABASE_HOST=localhost&& npx prisma studio",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
