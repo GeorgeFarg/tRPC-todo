@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+#root {
+    height: 100%;
+}
+
+.blue__gradient {
+    /* background: linear-gradient(180deg, rgba(188, 165, 255, 0) 0%, #214d76 100%); */
+    background: linear-gradient(180deg, rgb(187, 165, 255) 0%, #214d7680 100%);
+    filter: blur(60px);
+}
+
+.yellow__gradient {
+    background: linear-gradient(180deg, rgb(255, 165, 240) 0%, #dfdc2b9a 100%);
+    filter: blur(60px);
+}
