@@ -21,25 +21,13 @@ services:
   api:
     container_name: ${PROJECT_NAME}_api
     build: ./
-    # restart: unless-stopped
+    restart: unless-stopped
     ports:
       - ${API_PORT}:${API_PORT}
     networks:
       - trpc_network
     depends_on:
       - db
-
-  # frontend:
-  #   container_name: ${PROJECT_NAME}_frontend
-  #   build: ../client
-  #   ports:
-  #     - "80:80"
-  #   expose:
-  #     - 80
-  #   networks:
-  #     - trpc_network
-  #   depends_on:
-  #     - api
 
 
 networks:
